@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Link Launcher</title>
+
+<style>
+body{
+    background:#111;
+    color:white;
+    font-family:Arial;
+    text-align:center;
+    padding:30px;
+}
+
+textarea,input{
+    width:90%;
+    max-width:500px;
+    padding:12px;
+    border-radius:10px;
+    margin:10px;
+    font-size:16px;
+}
+
+button{
+    padding:15px 40px;
+    font-size:20px;
+    background:red;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Link Launcher</h1>
+
+<p>Links (one per line)</p>
+
+<textarea id="links">
+https://www.effectivecpmnetwork.com/e7z3zvwec8?key=8ec231e9fd27439ec7d1aa62945761a0
+https://www.effectivecpmnetwork.com/mq1h6nhuc?key=87e8955903ca4558b9263de10927d361
+https://www.effectivecpmnetwork.com/d3nhpepc?key=6328e3a09b4631526e4afefee22cc1f5
+https://www.effectivecpmnetwork.com/mnjvyxj9v?key=39893d2984b8de5967a6abedbf190141
+https://www.effectivecpmnetwork.com/nv1h7pcz?key=4b3ca98efaaf1e2c9034def607016fa7
+</textarea>
+
+<br>
+
+<p>How many rounds?</p>
+
+<input type="number" id="count" value="1" min="1" max="5">
+
+<br>
+
+<button onclick="openLinks()">PLAY</button>
+
+<script>
+function openLinks(){
+
+    let links = document.getElementById("links").value
+        .split("\n")
+        .map(link => link.trim())
+        .filter(link => link !== "");
+
+    let count = parseInt(document.getElementById("count").value);
+
+    if(count > 5000){
+        alert("Maximum 5000 rounds allowed");
+        return;
+    }
+
+    for(let i = 0; i < count; i++){
+
+        links.forEach((link, index) => {
+
+            setTimeout(() => {
+                window.open(link, "_blank");
+            }, (i * links.length + index) * 1500);
+
+        });
+
+    }
+}
+</script>
+
+</body>
+</html>
